@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# If script is passed parameter "local", runs the script locally
+where_to_run=$1
+
+# Setting folder variables
+src_files="/autograder/source/"
+subm_files="/autograder/submission/"
+results="/autograder/results/"
+#subm_files="/home/pranjalravi/project_1_d/subm/"
+#results="/home/pranjalravi/project_1_d/results/"
+#src_files="/home/pranjalravi/project_1_d/"
+package="edu/tamu/csce434"
+
+cd ${src_files}
+# make it local
+if [ "$where_to_run" == "local" ]
+then
+    src_files=".${src_files}"
+    subm_files=".${subm_files}"
+    results=".${results}"
+fi
+
+cd ${src_files}
+chmod -R 775 ${subm_files}/*
+cp -rf ${subm_files}/* ${package}/
+numTest=`ls Tests/* | wc -l`
+
+if  javac ${package}/*.java
+then
+  rm -rf Out
+  mkdir Out
+  i=1
+
+  for file in `ls Tests/*`
+  do
+    timeout 30s java ${package}/TestScanner "Tests/test_${i}" > "Out/out_${i}" 2>&1
+    i=$((i+1))
+  done
+
+  python3 compare.py $results $numTest
+else
+  python3 failed.py $results $numTest
+fi
