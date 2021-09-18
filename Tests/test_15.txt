@@ -1,0 +1,20 @@
+//with an error
+main
+var x,y,z;
+{	
+	let x <- 2;
+	let y <- 4;
+	let z <- 6;
+	if x == (y-2) then
+		if y+x == z then
+			call outputnum(y);
+			call outputnewline();
+
+		else
+			call outputnum(z);
+			call outputnewline();
+		fi;
+	else
+		call OUTPUTNum(x);
+	fi;
+}.

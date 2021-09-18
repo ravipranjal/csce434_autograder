@@ -1,0 +1,23 @@
+main
+var a, b, c, d;
+{
+	let a <- 22;
+	let b <- 22; 
+	let c <- 22;
+	let d <- call inputnum(); //call with 22
+	if a == b then
+		if b == c then
+			if c == d then
+				call outputnum(a)
+			else
+				call outputnum(b);
+			fi;
+		else
+			call outputnum(c)
+		fi;
+	else
+		let d <- call inputnum(); 
+		call outputnum(d)
+	fi;
+	call outputnewline();
+}.

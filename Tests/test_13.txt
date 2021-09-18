@@ -1,0 +1,7 @@
+//x not intialized
+main
+var x;
+{
+	call outputnum(x);
+	call outputnewline();
+}.

@@ -1,0 +1,11 @@
+main
+var x;
+{
+	let x <- call inputnum();
+	if x > 2 then
+		call outputnum(1)
+	else 
+		call outputnum(-1)
+	fi;
+	call outputnewline()
+}.

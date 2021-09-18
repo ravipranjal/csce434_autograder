@@ -1,0 +1,10 @@
+main
+var ch;
+{
+	//comment
+	;;
+	;
+	;
+	let p <- 2;
+	call outputnum(p);
+}.

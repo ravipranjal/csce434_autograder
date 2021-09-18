@@ -1,0 +1,7 @@
+main
+var ident < - 4;
+{
+	call outputnum(ident);
+	// this is a comment
+}.
+

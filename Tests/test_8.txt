@@ -1,0 +1,8 @@
+//testing while and for variables
+main
+{
+	let while <- 2;
+	let for <- 3;
+	call outputnum(while + for);
+	call outputnewline();
+}. 
