@@ -9,5 +9,5 @@ var while, for, outputnum;
 
 	let outputnum <- call inputnum();
 	call outputnum(outputnum);
-	call ouputnewline()
+	call outputnewline()
 }. 
