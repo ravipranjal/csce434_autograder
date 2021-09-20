@@ -6,4 +6,5 @@ var a;
 	call outputnewline();
 	let a <- 5*3+7;
 	call outputnum(a);
+	call outputnewline()
 }.
