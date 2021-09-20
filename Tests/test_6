@@ -9,3 +9,4 @@ var x;
 	fi;
 	call outputnewline()
 }.
+// If statement
