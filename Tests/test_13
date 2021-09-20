@@ -1,4 +1,4 @@
-//x not intialized
+
 main
 var x;
 {
