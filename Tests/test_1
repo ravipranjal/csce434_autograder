@@ -3,4 +3,4 @@ main
 	call inputnum();
 	call outputnum(2);
 	call outputnewline();
-}
+}.
