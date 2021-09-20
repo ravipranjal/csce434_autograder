@@ -1,7 +1,7 @@
 main
 var x;
 {
-	let x <- inputnum();
+	let x <- call inputnum();
 	call outputnum(x);
-	call outputnewline();
+	call outputnewline()
 }.
