@@ -1,5 +1,5 @@
 main 
-var OutputNum;
+var outputnum;
 {
 	let outputnum <- call inputnum();
 	call outputnum(outputnum);
