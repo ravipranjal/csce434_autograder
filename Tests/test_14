@@ -2,10 +2,10 @@ main
 var x,y,z;
 {	
 	let x <- 2;
-	let y <- 4;
-	let z <- 6;
-	if x == (y-2) then
-		if y+x == z then
+	let y <- call inputnum();
+	let z <- call inputnum();
+	if x != (y-2) then
+		if y+x >= z then
 			call outputnum(y);
 			call outputnewline();
 
