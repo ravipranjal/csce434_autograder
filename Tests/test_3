@@ -1,7 +1,6 @@
 //comment
 main
-var x;
-var y,z;
+var x,y,z;
 {
 	let x <- inputnum();
 	let y <- inputnum();
