@@ -1,7 +1,0 @@
-main 
-var outputnum;
-{
-	let outputnum <- call inputnum();
-	call outputnum(outputnum);
-	call outputnewline();
-}.
