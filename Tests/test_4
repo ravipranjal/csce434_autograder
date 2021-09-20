@@ -1,8 +1,12 @@
-main 
+main
+// Simple parsing test, then branch will not be executed
 var x, y;
 {
     let x <- 51; 
     let y <- 2 * x;
+    if x < y then
+        call outputnum(y);
+        call outputnewline();
+    fi;
     call outputnum(y);
 }.
-//Simple parsing test
