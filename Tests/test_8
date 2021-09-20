@@ -1,9 +1,13 @@
 //testing while and for variables
 main
-var while, for;
+var while, for, outputnum;
 {
 	let while <- 2;
 	let for <- 3;
 	call outputnum(while * for + 3*for - while);
 	call outputnewline();
+
+	let outputnum <- call inputnum();
+	call outputnum(outputnum);
+	call ouputnewline()
 }. 
