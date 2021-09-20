@@ -1,6 +1,0 @@
-main
-var ABC;
-{
-	let ABC <- 2;
-	call outputnum(ABC);
-}.
