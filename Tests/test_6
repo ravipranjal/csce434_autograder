@@ -5,7 +5,7 @@ var x;
 	if x > 2 then
 		call outputnum(1)
 	else 
-		call outputnum(-1)
+		call outputnum(10)
 	fi;
 	call outputnewline()
 }.
