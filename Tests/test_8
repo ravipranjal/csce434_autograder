@@ -1,4 +1,4 @@
-//testing while and for variables
+//testing while, for, and outnum variables
 main
 var while, for, outputnum;
 {
