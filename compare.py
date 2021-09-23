@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import json
 import sys
-import math
 sample_dir = "OutSample/"
 out_dir = "Out/"
 in_dir = "TestInputs/"
@@ -10,17 +9,17 @@ result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
 visibility = [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
 comments = ["","","","",
-            "This testcase tests expression inside a function call",
-            "This testcase tests if else statement",
-            "This testcase tests variable assignment through function call",
-            "This testcase tests nested function calls",
-            "This testcase tests expression inside nested function call and comment",
-            "This testcase is slightly complex with if statements function calls and expression",
-            "This testcase tests maximal munch and comment",
-            "This testcase expects uncorgnized characters",
+            "This test case tests expression evaluation",
+            "This test case tests if statement evaluation",
+            "This test case tests nested if statement evaluation with comments",
+            "This test case uses while,for,outputnum as variables",
             "",
-            "",
-            ""
+            "This test case changes variable values based inside if condition",
+            "This test case has many semi colons",
+            "This test case prints out an unassigned variable",
+            "This test case is complex and is a mixture of everything",
+            "This test case is complex and is a mixture of everything",
+            "This test case is complex and is a mixture of everything",
             ]
 
 my_dict = { "score": 0, "output" : "", "tests": []}
@@ -63,7 +62,7 @@ for i in range(1,num_tests+1):
         sample_file = open (sample_out_file, "r")
         file = open (out_file, "r")
         in_file = open(in_file, "r")
-        comment = "Input:\n"+  +"\n\nExpected:\n"+sample_file.read()+"\n\nGot:\n"+file.read()
+        comment = "Input:\n"+in_file.read()+"\n\nExpected:\n"+sample_file.read()+"\n\nGot:\n"+file.read()
         sample_file.close()
         file.close()
         in_file.close()
@@ -75,7 +74,7 @@ for i in range(1,num_tests+1):
     my_dict["tests"].append(my_temp_dict)
     my_dict["score"] += points
 
-my_dict["score"] = math.min(100,my_dict["score"])
+my_dict["score"] = min(100,my_dict["score"])
 result = open(result_file, "w")
 json.dump(my_dict, result, indent = 4)
 result.close()
