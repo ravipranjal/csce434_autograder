@@ -1,215 +1,248 @@
-package edu.tamu.csce434;
+package edu.tamu.cs434.baseline;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
 import java.util.List;
 import java.util.Vector;
-
+import java.util.Map;
+import java.util.HashMap;
 
 public class Scanner {
-    public int sym; // current token on the input 
-    public int val; // value of last number encountered
-    public int id;  // index of last identifier encountered
-
-    private PushbackReader reader;
-    private FileInputStream fileStream;
-
-    // Side effects of Advance()
-    // Current character in the fileInputStream we are looking at
-    public char inputChar;
-    // True when Advance() has reach EOF.
-    public boolean reachedEOF = false;
-
-    // Map identifier lexemes to their unique index
-    private ArrayList<String> idMap;
-
-    final int INVALID_CHAR = 0;
-
-    java.util.Map< String, Integer > reservedWords = new java.util.HashMap<>() {{
-        put("then",      41);
-        put("do",        42);
-        put("let",       77);
-        put("od",        81);
-        put("fi",        82);
-        put("else",      90);
-        put("call",     100);
-        put("if",       101);
-        put("while",    102);
-        put("return",   103);
-        put("var",      110);
-        put("array",    111);
-        put("function", 112);
-        put("procedure",113);
-        put("main",     200);
-    }};
-    java.util.Map< String, Integer > nonAlphaLexemes = new java.util.HashMap<>() {{
-        put("*",    1);
-        put("/",    2);
-        put("+",    11);
-        put("-",    12);
-        put("==",   20);
-        put("!=",   21);
-        put("<",    22);
-        put(">=",   23);
-        put("<=",   24);
-        put(">",    25);
-        put(".",    30);
-        put(",",    31);
-        put("[",    32);
-        put("]",    34);
-        put(")",    35);
-        put("<-",   40);
-        put("(",    50);
-        put(";",    70);
-        put("}",    80);
-        put("{",    150);
-    }};
-
-
-
-    public void closefile()
-	{
-        reachedEOF = true; // just in case
-        try {
-            fileStream.close();
-        } catch (java.io.IOException e) {
-            Error("Could not close file!");
-        }
-	}
-
-	/** 
-	 * Advance to the next token 
+	public int sym = -1;
+	public int val;
+	public int id;
+	/**
+	 * if the incoming identifier is already in indentlist, then duplicate is true.
+	 * It indicate that the identifier is a global var.
 	 */
-    public void Next() {
-        do { // Skip whitespace and comments, and catch EOF.
-            Advance();
-            if (reachedEOF) {
-                sym = 255; // EOF
-                return;
-            }
-            if (inputChar == '/' && GetLookAhead() == '/') {
-                while (!isNewline(inputChar)) {
-                    Advance();
-                }
-            }
-        } while (Character.isWhitespace(inputChar));
-        String lexeme = "" + inputChar;
+	public boolean duplicate; // if incoming identifier is already in identlist
 
-        if (Character.isLetter(inputChar)) {
-            while (Character.isLetterOrDigit(GetLookAhead())) {
-                Advance();
-                lexeme += inputChar;
-            }
-            if (reservedWords.containsKey(lexeme)) {
-                sym = reservedWords.get(lexeme);
-            } else {
-                sym = 61; // ident
-                if (idMap.contains(lexeme)) {
-                    id = idMap.indexOf(lexeme);
-                } else {
-                    id = idMap.size();
-                    idMap.add(lexeme);
-                }
-            }
-        } else if (Character.isDigit(inputChar)) {
-            while (Character.isDigit(GetLookAhead())) {
-                Advance();
-                lexeme += inputChar;
-            }
-            val = Integer.parseInt(lexeme);
-            sym = 60; // number
-        } else { // must be some non-alphanumeric token
-            // First, check to see if it is a length 2 lexeme
-            String twoLongSymbolLexeme = lexeme + GetLookAhead();
-            if (nonAlphaLexemes.containsKey(twoLongSymbolLexeme)) {
-                // Eat the lookahead since we are using it
-                Advance();
-                sym = nonAlphaLexemes.get(twoLongSymbolLexeme);
+	private LineNumberReader lineNumberReader;
+	private int lastCharacter;
+	/**
+	 * identList store the global var.
+	 * TODO Maybe we need a global var list. That is more clear.
+	 */
+	private List<String> identList = new Vector<String>();
+	private List<Integer> identVal = new Vector<Integer>();
 
-            // Otherwise, it must be a length 1 lexeme. Return errorToken=0 if we don't find it
-            } else {
-                sym = nonAlphaLexemes.getOrDefault(lexeme, 0);
-            }
-        }
+	Map<String, Integer> reservedWords = new HashMap<String, Integer>();
+	Map<String, Integer> otherTokens = new HashMap<String, Integer>();
+
+	/**
+	 * put the reserved words into reservedWords map (name -> symbol id)
+	 * put the reserved symbols into otherTokens map (name -> symbol id)
+	 */
+	private void prePopulate() {
+
+		reservedWords.put("then", 41);
+//		reservedWords.put("do", 42);
+//		reservedWords.put("od", 81);
+		reservedWords.put("fi", 82);
+		reservedWords.put("else", 90);
+		reservedWords.put("call", 100);
+		reservedWords.put("if", 101);
+//		reservedWords.put("while", 102);
+//		reservedWords.put("return", 103);
+		reservedWords.put("var", 110);
+//		reservedWords.put("array", 111);
+		reservedWords.put("function", 112);
+		reservedWords.put("procedure", 113);
+		reservedWords.put("main", 200);
+
+		otherTokens.put("eof", 255);
+		otherTokens.put("error", 0);
+		otherTokens.put("*", 1);
+		otherTokens.put("/", 2);
+		otherTokens.put("+", 11);
+		otherTokens.put("-", 12);
+		otherTokens.put("==", 20);
+		otherTokens.put("!=", 21);
+		otherTokens.put("<", 22);
+		otherTokens.put(">=", 23);
+		otherTokens.put("<=", 24);
+		otherTokens.put(">", 25);
+		otherTokens.put(".", 30);
+		otherTokens.put(",", 31);
+		otherTokens.put("[", 32);
+		otherTokens.put("]", 34);
+		otherTokens.put(")", 35);
+		otherTokens.put("<-", 40);
+		otherTokens.put("(", 50);
+		otherTokens.put(";", 70);
+		otherTokens.put("}", 80);
+		otherTokens.put("{", 150);
 	}
 
-    private boolean isNewline(char c) {
-        return c=='\n' || c=='\r';
-    }
-    /**
-     * Move to next char in the input
-     */
+	public char getLastCharacter() {
+		return (char) lastCharacter;
+	}
+
+	public void closefile() {
+		try {
+			lineNumberReader.close();
+		} catch (IOException e) {
+			System.err.println("Error closing file reader");
+			System.exit(-1);
+		}
+	}
+
+	/**
+	 * Read the next token. Update the value of sym, identList, and identVal.
+	 */
+	public void Next() {
+		if (sym == 255) {
+			System.err.println("Scanner error: called Next() on EOF");
+			return;
+		}
+
+		while (Character.isWhitespace(getLastCharacter()))
+			Advance();
+
+		if (lastCharacter == -1) {
+			sym = 255;
+			return;
+		}
+
+		if (Character.isLetter(getLastCharacter())) {
+			String tmptoken = Character.toString(getLastCharacter());
+			Advance();
+
+			while (Character.isLetter(getLastCharacter())
+					|| Character.isDigit(getLastCharacter())) {
+				tmptoken = tmptoken.concat(Character
+						.toString(getLastCharacter()));
+				Advance();
+			}
+
+			if (reservedWords.containsKey(tmptoken)) {
+				sym = reservedWords.get(tmptoken);
+				return;
+			}
+
+			sym = 61;
+			if (!identList.contains(tmptoken)) {
+				id = identList.size();
+				identList.add(tmptoken);
+				identVal.add(0);
+				duplicate = false;
+			} else {
+				id = identList.indexOf(tmptoken);
+				duplicate = true;
+			}
+
+			return;
+		}
+
+		else if (Character.isDigit(getLastCharacter())) {
+			String tmptoken = Character.toString(getLastCharacter());
+			Advance();
+			while (Character.isDigit(getLastCharacter())) {
+				tmptoken = tmptoken.concat(Character
+						.toString(getLastCharacter()));
+				Advance();
+			}
+			sym = 60;
+			val = Integer.parseInt(tmptoken);
+			return;
+		}
+
+		else if (getLastCharacter() == ';' || getLastCharacter() == '.'
+				|| getLastCharacter() == '(' || getLastCharacter() == ')'
+				|| getLastCharacter() == '{' || getLastCharacter() == '}'
+				|| getLastCharacter() == ',' || getLastCharacter() == '='
+				|| getLastCharacter() == '<' || getLastCharacter() == '+'
+				|| getLastCharacter() == '-' || getLastCharacter() == '*'
+				|| getLastCharacter() == '/' || getLastCharacter() == '!'
+				|| getLastCharacter() == '>' || getLastCharacter() == ']'
+				|| getLastCharacter() == '[') {
+			String tmptoken = Character.toString(getLastCharacter());
+			Advance();
+
+			if ((tmptoken.equals("=") && getLastCharacter() == '=')
+					|| (tmptoken.equals("!") && getLastCharacter() == '=')
+					|| (tmptoken.equals(">") && getLastCharacter() == '=')
+					|| (tmptoken.equals("<") && getLastCharacter() == '=')
+					|| (tmptoken.equals("<") && getLastCharacter() == '-')) {
+				tmptoken = tmptoken.concat(Character
+						.toString(getLastCharacter()));
+				Advance();
+			}
+
+			if (otherTokens.containsKey(tmptoken)) {
+				sym = otherTokens.get(tmptoken);
+				return;
+			}
+		}
+
+		sym = 0;
+		return;
+
+	}
+
 	public void Advance() {
-        if (reachedEOF) return;
-        try {
-            int r = 0;
-            r = reader.read();
-            if (r == -1) {
-                reachedEOF = true;
-                return;
-            }
-            inputChar = (char) r;
-        } catch (IOException e) {
-            Error("Reader failed to get next character in Advance()");
-            return;
-        }
+		try {
+			lastCharacter = lineNumberReader.read();
+		} catch (IOException e) {
+			System.err.println("Error reading character");
+			System.exit(-1);
+		}
 	}
 
-    /**
-     * Peek the next char without Advance()'ing
-     */
-    public char GetLookAhead() {
-        if (reachedEOF) return INVALID_CHAR;
-        try {
-            int r = reader.read();
-            char lookAhead = (char) r;
-            if (r == -1) {
-                return INVALID_CHAR;
-            }
-            reader.unread(r);
-            return  lookAhead;
-        } catch (IOException e) {
-            Error("Reader failed to get next character in GetLookAhead()");
-            return INVALID_CHAR;
-        }
-    }
+	public Scanner(String fileName) {
+		try {
+			lineNumberReader = new LineNumberReader(new FileReader(fileName));
+			lineNumberReader.setLineNumber(1);
+		} catch (IOException e) {
+			System.err.println("File " + fileName + " could not be read");
+			System.exit(-1);
+		}
 
-    public Scanner(String fileName) {
-        try {
-            File file = new File(fileName);
-            fileStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            Error("Could not open file '" + fileName + "'");
-            return;
-        }
-        reader = new PushbackReader(new BufferedReader(new InputStreamReader(fileStream)));
-        idMap = new ArrayList<>();
+		prePopulate();
+		Advance();
+		Next();
+	}
 
-        // Load first token in
-        Next();
-    }
+	/**
+	 * Converts given id to name; returns null in case of error
+	 */
+	public String Id2String(int id) {
+		if ((id < 0) || (id > identList.size()))
+			return null;
+		else
+			return identList.get(id);
+	}
 
-    /**
-     * Converts given id to name; returns null in case of error
-     */
-    public String Id2String(int id) {
-        return idMap.get(id);
-    }
+	public void Error(String errorMsg) {
+		System.err.println("Scanner error: " + errorMsg);
+		sym = 0;
 
-    /**
-     * Signal an error message
-     * 
-     */
-    public void Error(String errorMsg) {
-        System.err.println("ERROR: \"" + errorMsg + "\"");
-    }
+	}
 
-    /**
-     * Converts given name to id; returns -1 in case of error
-     */
-    public int String2Id(String name) {
-        return idMap.indexOf(name);
-    }
+	/**
+	 * Converts given name to id; returns -1 in case of error
+	 */
+	public int String2Id(String name) {
+		return (identList.indexOf(name));
+	}
 
+	public void removeIdent(int index) {
+		if (duplicate == false) {
+			identList.remove(index);
+			identVal.remove(index);
+		}
+	}
+
+	public int getIdentSize() {
+		return (identList.size());
+	}
+
+	public int getIdentVal(int id) {
+		return (identVal.get(id));
+	}
+
+	public void setIdentVal(int id, int val) {
+		identVal.set(id, val);
+	}
 }
-

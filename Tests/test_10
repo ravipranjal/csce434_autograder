@@ -18,5 +18,6 @@ var a, b;
 	fi;
 	
 	call outputnum(a);
+	call outputnewline();
 	call outputnum(b)
 }.
