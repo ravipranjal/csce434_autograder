@@ -15,7 +15,7 @@ comments = ["","","","",
             "This test case tests if statement evaluation",
             "This test case tests nested if statement evaluation with comments",
             "This test case uses while,for,outputnum as variables",
-            "",
+            "Bad program - Error expected",
             "This test case changes variable values based inside if condition",
             "This test case changes variable values based inside if condition",
             "Bad program - Error expected",
@@ -43,7 +43,7 @@ for i in range(1,num_tests+1):
     if diff_text:
         points=0
 
-    if i==12: ## bad test case
+    if i==12 or i==9: ## bad test case
         f=re.compile(r'\b({0})\b'.format("error"), flags=re.IGNORECASE).search(str(file_text))
         if f:
             #print("found " + str(i))

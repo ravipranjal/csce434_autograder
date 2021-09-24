@@ -1,6 +1,40 @@
 main
-var x;
-{
+var x,y,z,a;
+{	
+	let x <- 2;
+	let y <- call inputnum();
+	let z <- call inputnum();
+	let a <- 1;
+	if x != (y-2) then
+	    if y+x >= z then
+   		    if x < y then
+		        let z <- 1;
+		    fi;
+			call outputnum(y);
+			call outputnewline();
+		else
+			call outputnum(z);
+			call outputnewline();
+			let z <- call inputnum();
+			let a <- 2;
+		fi;
+	else
+		call outputnum(x);
+		call outputnewline();
+	fi;
+
+	if a != 1 then
+	     	call outputnum(a);
+			call outputnewline();
+	fi;
+	let a <- x * y *z;
+
+	call outputnum(a);
+	call outputnewline();
 	call outputnum(x);
+	call outputnewline();
+	call outputnum(y);
+	call outputnewline();
+	call outputnum(z);
 	call outputnewline();
 }.
