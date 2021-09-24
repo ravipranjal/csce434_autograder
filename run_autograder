@@ -40,5 +40,7 @@ then
 
   python3 compare.py $results $numTest
 else
+  rm -f ${package}/*.class
+  javac ${package}/*.java 2>&1 | tee javac_output  
   python3 failed.py $results $numTest
 fi

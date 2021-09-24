@@ -7,11 +7,15 @@ result_dir = sys.argv[1]
 result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
 
-my_dict = { "score": 0, "output" : "NA", "tests": []}
+javac_f = open("javac_output","r")
+content = javac_f.read()
+
+my_dict = { "score": 0, "output" : content, "tests": []}
 for i in range(1,num_tests+1):
-    my_temp_dict = { "score": 0, "max_score": 10 , "output": "Failed to compile"}
+    my_temp_dict = { "score": 0, "max_score": 10 , "output": "Failed to compile", "name": "Test_"+str(i)}
     my_dict["tests"].append(my_temp_dict)
 
+javac_f.close()
 result = open(result_file, "w")
 json.dump(my_dict, result, indent = 4)
 result.close()

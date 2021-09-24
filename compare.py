@@ -91,18 +91,18 @@ for i in range(1,num_tests+1):
         in_file.close()
         test_file.close()
     else:
-        comment = comments[idx]
+        comment = comments[idx]+"\nDiff:\n"+diff_text
     #if(points==10.0):
     #        comment = comments[idx] + " Well done!"
     my_temp_dict = { "score": points, "max_score": 10 , "output": comment, "name": "Test_"+str(i)}
     my_dict["tests"].append(my_temp_dict)
     my_dict["score"] += points
 
-#my_dict["score"] = min(100,my_dict["score"])
+my_dict["score"] = min(100,my_dict["score"])
 result = open(result_file, "w")
 json.dump(my_dict, result, indent = 4)
 result.close()
-print(my_dict)
+#print(my_dict)
 ############################################  Content of JSON file  ##############################################
 # { "score": 44.0, // optional, but required if not on each test case below. Overrides total of tests if specified.
 # "execution_time": 136, // optional, seconds
