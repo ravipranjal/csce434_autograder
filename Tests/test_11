@@ -1,11 +1,23 @@
-// bad program, error expected
+//Basic if statement test
 main
-var ch;
+var a, b;
 {
-	//comment
-	;;
-	;
-	;
-	let p <- 2;
-	call outputnum(p);
+	let a <- 434;
+	let b <- 0;
+	if a > b then
+		let b <- a ;
+		let a <- a + 2 * 5;
+	else
+		let b <- b + 3;
+		let a <- call inputnum();
+		let a <- (b + b)* 1; 
+	fi;
+	
+	if a < b then
+		let a <- a - 2
+	fi;
+	
+	call outputnum(a);
+	call outputnewline();
+	call outputnum(b)
 }.

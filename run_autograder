@@ -34,7 +34,7 @@ then
 
   for file in `ls Tests/*`
   do
-    timeout 30s java ${package}/Parser "Tests/test_${i}" "TestInputs/tests_${i}.in" > "Out/out_${i}" 2>&1
+    timeout 30s java ${package}/Parser "Tests/test_${i}" "TestInputs/tests_${i}.in" > "Out/out_${i}" 2> "Out/err_${i}"
     i=$((i+1))
   done
 
