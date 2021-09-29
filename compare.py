@@ -3,6 +3,7 @@ import json
 import sys
 import difflib
 import re
+from itertools import islice
 sample_dir = "OutSample/"
 out_dir = "Out/"
 in_dir = "TestInputs/"
@@ -33,10 +34,10 @@ for i in range(1,num_tests+1):
         sample_file = open (sample_out_file, "r")
         file = open (out_file, "r")
     except err:
-        break
+        continue
 
     sample_file_text=sample_file.read().splitlines(True)
-    file_text=file.read().splitlines(True)
+    file_text=list(islice(myfile, 100)) #file.read().splitlines(True)
     diff=difflib.unified_diff(sample_file_text,file_text)
     diff_text="".join(list(diff))
     points=10
