@@ -37,7 +37,7 @@ for i in range(1,num_tests+1):
         continue
 
     sample_file_text=sample_file.read().splitlines(True)
-    file_text=list(islice(file, 100)) #file.read().splitlines(True)
+    file_text=list(islice(file, 100))
     diff=difflib.unified_diff(sample_file_text,file_text)
     diff_text="".join(list(diff))
     points=10
@@ -47,54 +47,22 @@ for i in range(1,num_tests+1):
     if i==12 or i==9: ## bad test case
         f=re.compile(r'\b({0})\b'.format("error"), flags=re.IGNORECASE).search(str(file_text))
         if f:
-            #print("found " + str(i))
             points=10
             
-    #for line in difflib.unified_diff(sample_file_text,file_text):
-    #    print(line)
-        
-        #points=0
-
-    #sample_file_line = sample_file.readline()
-    #file_line = file.readline()
-    #points = 0
-    #total_points = 0;
-    #while sample_file_line != '' and file_line != '':
-    #    total_points += 1
-    #    sample_file_line = sample_file_line.rstrip()
-    #    file_line = file_line.rstrip()
-    #    if sample_file_line == file_line:
-    #        points += 1
-    #    sample_file_line = sample_file.readline()
-    #    file_line = file.readline()
-    #while sample_file_line != '':
-    #    total_points += 1
-    #    sample_file_line = sample_file.readline()
     sample_file.close()
     file.close()
     idx = i-1
-    #if(points == total_points):
-    #        points = 10
-    #else:
-    #        points = 0
 
     comment=""
 
     if(visibility[idx]==1):
-        #sample_file = open (sample_out_file, "r")
-        #file = open (out_file, "r")
         in_file = open(in_file, "r")
         test_file = open("Tests/test_"+str(i), "r")
-        #comment = "Input:\n"+in_file.read()+"\n\nExpected:\n"+sample_file.read()+"\n\nGot:\n"+file.read()
         comment = "Input:\n"+in_file.read()+"\nTest:\n"+test_file.read()+"\nDiff:\n"+diff_text
-        #sample_file.close()
-        #file.close()
         in_file.close()
         test_file.close()
     else:
         comment = comments[idx]+"\nDiff:\n"+diff_text
-    #if(points==10.0):
-    #        comment = comments[idx] + " Well done!"
     my_temp_dict = { "score": points, "max_score": 10 , "output": comment, "name": "Test_"+str(i)}
     my_dict["tests"].append(my_temp_dict)
     my_dict["score"] += points
