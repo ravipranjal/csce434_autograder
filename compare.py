@@ -37,7 +37,7 @@ for i in range(1,num_tests+1):
         continue
 
     sample_file_text=sample_file.read().splitlines(True)
-    file_text=list(islice(myfile, 100)) #file.read().splitlines(True)
+    file_text=list(islice(file, 100)) #file.read().splitlines(True)
     diff=difflib.unified_diff(sample_file_text,file_text)
     diff_text="".join(list(diff))
     points=10
