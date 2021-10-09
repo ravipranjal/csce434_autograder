@@ -1,4 +1,3 @@
-//comment
 main
 var x,y,z;
 {
@@ -11,6 +10,8 @@ var x,y,z;
 	call outputnewline();
 	call outputnum(z);
 	call outputnewline();
-	call outputnum(x+y/z);
-	call outputnewline()
+    if x > y then
+    	call outputnum(x+y/z);
+    	call outputnewline();
+    fi;
 }.

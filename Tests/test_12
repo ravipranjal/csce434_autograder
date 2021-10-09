@@ -1,11 +1,17 @@
-// bad program, error expected
 main
-var ch;
+var num, i, j;
 {
-	//comment
-	;;
-	;
-	;
-	let p <- 2;
-	call outputnum(p);
+    call outputnewline();
+    let num <- call inputnum();
+    let i <- 1;
+    let j <- 0;
+    while i < num+1 do
+        let j <- 0;
+        while j < i do
+            call outputnum(1);
+            let j <- j + 1;    
+        od;
+        call outputnewline();
+        let i <- i + 1;
+    od; 
 }.

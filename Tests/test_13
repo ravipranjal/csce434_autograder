@@ -5,7 +5,7 @@ var x,y,z,a;
 	let y <- call inputnum();
 	let z <- call inputnum();
 	let a <- 1;
-	if x != (y-2) then
+	if x != y-2 then
 	    if y+x >= z then
    		    if x < y then
 		        let z <- 1;

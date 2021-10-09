@@ -1,13 +1,11 @@
-//testing while, for, and outnum variables
 main
-var while, for, outputnum;
+var temp, for, outputnum;
 {
-	let while <- 2;
+	let temp <- 2;
 	let for <- 3;
-	call outputnum(while * for + 3*for - while);
+	call outputnum(temp * for + 3*for - temp);
 	call outputnewline();
-
 	let outputnum <- call inputnum();
 	call outputnum(outputnum);
-	call outputnewline()
+	call outputnewline();
 }. 

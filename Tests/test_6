@@ -1,12 +1,12 @@
 main
-var x;
+var x,y;
 {
 	let x <- call inputnum();
-	if x > 2 then
-		call outputnum(1)
-	else 
-		call outputnum(10)
-	fi;
-	call outputnewline()
+    let y <- 1;
+	while  x > 0 do
+        let y <- y*2;
+        let x <- x/2;
+    od;
+    call outputnum(y);
+	call outputnewline();
 }.
-// If statement

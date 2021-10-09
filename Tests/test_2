@@ -3,5 +3,10 @@ var x;
 {
 	let x <- call inputnum();
 	call outputnum(x);
-	call outputnewline()
+    call outputnewline();
+    while x < 0 do
+        let x <- x + 1;
+    od;
+    call outputnum(x);
+	call outputnewline();
 }.

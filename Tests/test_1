@@ -1,9 +1,16 @@
 main
+var x;
 {
-	call inputnum;
-	call outputnum(2);
-	call outputnum(0);
-	call outputnum(2);
-	call outputnum(1);
+	let x <- call inputnum();
+	call outputnum(x);
 	call outputnewline();
+    if x < 2 then
+        call outputnum(x);
+        call outputnewline();
+    else 
+        call outputnum(100);
+        call outputnewline();
+    fi;
+    call outputnum(-1);
+    call outputnewline();
 }.

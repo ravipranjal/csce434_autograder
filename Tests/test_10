@@ -1,23 +1,27 @@
-//Basic if statement test
 main
 var a, b;
 {
-	let a <- 2410;
-	let b <- 4256;
-	if a > b then
-		let a <- a + 1;
-		let b <- a;
-	else
-		let b <- b + 3;
-		let a <- call inputnum();
-		let a <- (b + b)* 1; 
-	fi;
-	
-	if a < b then
-		let a <- a - 2
-	fi;
-	
-	call outputnum(a);
-	call outputnewline();
-	call outputnum(b)
+	let a <- 1;
+	while a < 6 do
+        let b <- 2;
+        while b < 6 do 
+            if a+b == 3 then
+                call outputnum(a);
+                call outputnewline();
+            fi;
+
+            if a+b == 4 then
+                call outputnum(b);
+                call outputnewline();
+            fi;
+
+            if a+b == 5 then
+                call outputnum(a);
+                call outputnewline();
+            fi;
+
+            let b <- b + 1;
+        od;
+        let a <- a + 1;
+    od;
 }.
