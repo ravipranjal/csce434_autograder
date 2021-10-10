@@ -25,19 +25,22 @@ cd ${src_files}
 chmod -R 775 ${subm_files}/*
 cp -rf ${subm_files}/* ${package}/
 numTest=`ls Tests/* | wc -l`
+cp -f TestCompiler.java ${package}/
 
 if  javac ${package}/*.java
 then
   rm -rf Out
   mkdir Out
+  rm -rf Out_bk
+  mkdir Out_bk
   i=1
 
   for file in `ls Tests/*`
   do
-    timeout 30s java ${package}/Parser "Tests/test_${i}" "TestInputs/tests_${i}.in" > "Out/out_${i}" 2> "Out/err_${i}"
+    timeout 30s java ${package}/TestCompiler "Tests/test_${i}" "TestInputs/tests_${i}.in" > "Out/out_bk${i}" 2> "Out/err_${i}"
     i=$((i+1))
   done
-
+  bash segregate_data.sh 
   python3 compare.py $results $numTest
 else
   rm -f ${package}/*.class

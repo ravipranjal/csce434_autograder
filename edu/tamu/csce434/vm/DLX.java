@@ -216,7 +216,7 @@ public class DLX {
 					nextPC = c / 4; 
 					break;
 				case RDI:
-					System.out.print("?: ");
+                    System.out.print("?: ");
 					String line = lineReader.readLine();
 					R[a] = Integer.parseInt(line);
 					break;

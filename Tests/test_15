@@ -1,33 +1,31 @@
 main
 var x,y,z,a;
 {	
-	let x <- 2;
+	let x <- 10;
 	let y <- call inputnum();
 	let z <- call inputnum();
 	let a <- 1;
-	if x != (y-2) then
-	    if y+x >= z then
-   		    if x < y then
-		        let z <- 1;
-		    fi;
-			call outputnum(y);
-			call outputnewline();
-		else
-			call outputnum(z);
-			call outputnewline();
-			let z <- call inputnum();
-			let a <- 2;
-		fi;
+    while a < 50 do
+        let x <- x + 1;
+        let a <- a * 2;
+    od;
+	if x == 8 then
+        let a <- 1;
+        while x > 0 do
+            let a <- a * x;
+            let x <- x - 1;
+        od;
 	else
-		call outputnum(x);
-		call outputnewline();
+        let a <- 2;
+        if x > 8 then
+            while x > 8 do
+                let a <- a + x;
+                let x <- x/2;
+            od;
+        else 
+            let a <- 1000;
+        fi;
 	fi;
-
-	if a != 1 then
-	     	call outputnum(a);
-			call outputnewline();
-	fi;
-	let a <- x * y *z;
 
 	call outputnum(a);
 	call outputnewline();
