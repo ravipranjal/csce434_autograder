@@ -12,17 +12,17 @@ result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
 visibility = [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
 comments = ["","","","",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "Similar to the last project",
+            "Similar to the last project with a while loop",
+            "While loop and a few if conditions",
+            "Similar to the last project",
+            "Nested while",
+            "Nested while and if and while",
+            "Fibonacci numbers",
+            "Pyramid print",
+            "Nested ifs and checks",
+            "While and ifs",
+            "While and ifs",
             ]
 
 my_dict = { "score": 0, "output" : "", "tests": []}
@@ -59,7 +59,7 @@ for i in range(1,num_tests+1):
         points=0
     
     change = abs(wc_sample_reg_file-wc_reg_file)/wc_sample_reg_file
-    if change > .25:
+    if change > .35:
         points=0
         diff_text += "\n instruction count misaligned"
     
