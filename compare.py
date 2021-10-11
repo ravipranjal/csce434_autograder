@@ -10,19 +10,19 @@ in_dir = "TestInputs/"
 result_dir = sys.argv[1]
 result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
-visibility = [1,1,1,1,0,0,0,0,0,0,0,1,0,0,0]
+visibility = [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
 comments = ["","","","",
-            "This test case tests expression evaluation",
-            "This test case tests if statement evaluation",
-            "This test case tests nested if statement evaluation with comments",
-            "This test case uses while,for,outputnum as variables",
-            "Bad program - Error expected",
-            "This test case changes variable values based inside if condition",
-            "This test case changes variable values based inside if condition",
-            "Bad program - Error expected",
-            "This test case is complex and is a mixture of everything",
-            "This test case is complex and is a mixture of everything",
-            "This test case is complex and is a mixture of everything",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             ]
 
 my_dict = { "score": 0, "output" : "", "tests": []}
@@ -30,6 +30,19 @@ for i in range(1,num_tests+1):
     sample_out_file = sample_dir+"out_"+str(i)
     out_file = out_dir+"out_"+str(i)
     in_file = in_dir+"tests_"+str(i)+'.in'
+
+    sample_reg_file = sample_dir+"out_"+str(i)+"_reg"
+    reg_file = out_dir+"out_"+str(i)+"_reg"
+    wc_sample_reg_file = 0
+    wc_reg_file = 0
+    try:
+        srf = open(sample_reg_file, "r") 
+        rf = open(reg_file, "r")
+        wc_sample_reg_file = len(srf.readlines())
+        wc_reg_file = len(rf.readlines())
+    except err:
+        continue
+
     try:
         sample_file = open (sample_out_file, "r")
         file = open (out_file, "r")
@@ -41,13 +54,19 @@ for i in range(1,num_tests+1):
     diff=difflib.unified_diff(sample_file_text,file_text)
     diff_text="".join(list(diff))
     points=10
+
     if diff_text:
         points=0
-
-    if i==12 or i==9: ## bad test case
-        f=re.compile(r'\b({0})\b'.format("error"), flags=re.IGNORECASE).search(str(file_text))
-        if f:
-            points=10
+    
+    change = abs(wc_sample_reg_file-wc_reg_file)/wc_sample_reg_file
+    if change > .25:
+        points=0
+        diff_text += "\n instruction count misaligned"
+    
+#    if i==12 or i==9: ## bad test case
+#        f=re.compile(r'\b({0})\b'.format("error"), flags=re.IGNORECASE).search(str(file_text))
+#        if f:
+#            points=10
             
     sample_file.close()
     file.close()
@@ -71,6 +90,8 @@ my_dict["score"] = min(100,my_dict["score"])
 result = open(result_file, "w")
 json.dump(my_dict, result, indent = 4)
 result.close()
+
+
 #print(my_dict)
 ############################################  Content of JSON file  ##############################################
 # { "score": 44.0, // optional, but required if not on each test case below. Overrides total of tests if specified.
