@@ -7,8 +7,8 @@ result_dir = sys.argv[1]
 result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
 
-javac_f = open("javac_output","r")
-content = javac_f.read()
+javac_f = open("javac_output", "r")
+content = "".join(javac_f.readlines()[0:100])
 
 my_dict = { "score": 0, "output" : content, "tests": []}
 for i in range(1,num_tests+1):
