@@ -62,6 +62,7 @@ for i in range(1,num_tests+1):
     if change > .35:
         points=0
         diff_text += "\n instruction count misaligned"
+        diff_text += " expected: "+ str(wc_sample_reg_file) + " got: " + str(wc_reg_file)
     
 #    if i==12 or i==9: ## bad test case
 #        f=re.compile(r'\b({0})\b'.format("error"), flags=re.IGNORECASE).search(str(file_text))
