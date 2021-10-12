@@ -23,9 +23,11 @@ fi
 
 cd ${src_files}
 chmod -R 775 ${subm_files}/*
+rm -f ${subm_files}/DLX.java
 cp -rf ${subm_files}/* ${package}/
 numTest=`ls Tests/* | wc -l`
 cp -f TestCompiler.java ${package}/
+cp -f DLX.java ${package}/
 
 if  javac ${package}/*.java
 then
