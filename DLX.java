@@ -12,7 +12,7 @@ public class DLX {
 	public static int PC, op, a, b, c, format; 
 	
 	// emulated memory
-	public static final int MemSize = 10000; // bytes in memory (divisible by 4)
+	public static final int MemSize = 40000; // bytes in memory (divisible by 4)
 	public static int M[] = new int [MemSize/4];
 
     
