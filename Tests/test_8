@@ -1,11 +1,28 @@
 main
-var temp, for, outputnum;
+var input, myVar;
+function getNumberFromInput(n);
+var num, next;
+{	
+    
+	let num <- call inputnum();
+    
+    call outputnum(num);    
+    call outputnewline();
+	if n == 1 then
+		return num;
+	fi;
+    
+    let next <- call getNumberFromInput(n-1);
+    let next <- next*10;
+	return num + next;
+};
+
 {
-	let temp <- 2;
-	let for <- 3;
-	call outputnum(temp * for + 3*for - temp);
+    let input <- call inputnum();
+    
+    call outputnewline();
+    let myVar <- call getNumberFromInput(input);
+    call outputnewline();
+	call outputnum(myVar);
 	call outputnewline();
-	let outputnum <- call inputnum();
-	call outputnum(outputnum);
-	call outputnewline();
-}. 
+}.

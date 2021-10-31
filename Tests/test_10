@@ -1,27 +1,25 @@
 main
-var a, b;
+var input, myVar;
+function printNum(n);
+var i;
+{	
+	if n == 0 then
+		return 0;
+	fi;
+	
+	let i <- 0;
+	while i < n do
+		call outputnum(1);
+		let i <- i + 1;
+	od;
+	call outputnewline();
+	call printNum(n-1);	
+	return 0;
+};
+
 {
-	let a <- 1;
-	while a < 6 do
-        let b <- 2;
-        while b < 6 do 
-            if a+b == 3 then
-                call outputnum(a);
-                call outputnewline();
-            fi;
-
-            if a+b == 4 then
-                call outputnum(b);
-                call outputnewline();
-            fi;
-
-            if a+b == 5 then
-                call outputnum(a);
-                call outputnewline();
-            fi;
-
-            let b <- b + 1;
-        od;
-        let a <- a + 1;
-    od;
+    let input <- call inputnum();
+	call outputnewline();
+    let myVar <- call printNum(input);
+    call outputnewline();
 }.

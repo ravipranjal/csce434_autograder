@@ -1,12 +1,17 @@
 main
-var x;
+var input, myVar;
+
+function getTwoSum(n);
+var i,k;
 {
-	let x <- call inputnum();
-	call outputnum(x);
+    let i <- call inputnum();
+    let k <- i + n;
+    return k;
+};
+
+{
+    let input <- call inputnum();
+    let myVar <- call getTwoSum(input);
+    call outputnum(myVar);
     call outputnewline();
-    while x < 0 do
-        let x <- x + 1;
-    od;
-    call outputnum(x);
-	call outputnewline();
 }.

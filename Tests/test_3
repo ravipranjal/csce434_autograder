@@ -1,17 +1,23 @@
 main
-var x,y,z;
+var input, myVar;
+function getSumToN(n);
+var i,j;
 {
-	let x <- call inputnum();
-	let y <- call inputnum();
-	let z <- call inputnum();
-	call outputnum(x);
+    let i <- 0;
+	let j <- 1;
+    while j <= n do
+		let i <- i + j;
+		let j <- j + 1;
+	od;
+    return i;
+};
+
+{
+    let input <- call inputnum();
+    let myVar <- call getSumToN(input);
+    call outputnewline();
+	call outputnum(input);
+    call outputnewline();
+	call outputnum(myVar);
 	call outputnewline();
-	call outputnum(y);
-	call outputnewline();
-	call outputnum(z);
-	call outputnewline();
-    if x > y then
-    	call outputnum(x+y/z);
-    	call outputnewline();
-    fi;
 }.

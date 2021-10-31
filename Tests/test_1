@@ -1,16 +1,12 @@
 main
-var x;
+function checkForSanity();
 {
-    let x <- call inputnum();
-    call outputnum(x);
-    call outputnewline();
-    if x < 2 then
-        call outputnum(x*2);
-        call outputnewline();
-    else 
-        call outputnum(100*x);
-        call outputnewline();
-    fi;
-    call outputnum(10+1);
+    call outputnum(5);
+    return 5;
+};
+
+
+{
+    call checkForSanity();
     call outputnewline();
 }.

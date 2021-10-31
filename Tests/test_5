@@ -1,10 +1,25 @@
 main
-var a;
+var input, myVar;
+function maxNumberFromInput(n);
+var max, i, curr;
+{	
+	let max <- 0;
+	let i <- 0;
+	
+	while i < n do
+		let curr <- call inputnum();
+		if curr > max then
+			let max <- curr;
+		fi;
+		let i <- i + 1;
+	od;
+    return max;
+};
+
 {
-	let a <- ( ( ( 2 + 1 ) * 2 ) / 2 ) - 1;
-	call outputnum(a);
+    let input <- call inputnum();
+    let myVar <- call maxNumberFromInput(input);
+    call outputnewline();
+	call outputnum(myVar);
 	call outputnewline();
-	let a <- 5*3+7;
-	call outputnum(a);
-	call outputnewline()
 }.

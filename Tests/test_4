@@ -1,16 +1,19 @@
 main
-var x, y;
+var input, myVar;
+function getSumToN(n);
 {
-    let x <- 51; 
-    let y <- 10;
-    while x > 0 do
-        if x > y then
-            call outputnum(y);
-            call outputnewline();
-        fi;
-        let x <- x - 5;
-        call outputnum(x);
-        call outputnewline();
-    od;
-    call outputnum(y);
+	if n == 1 then
+		return 1;
+	fi;
+    return call getSumToN(n-1) + n;
+};
+
+{
+    let input <- call inputnum();
+    let myVar <- call getSumToN(input);
+    call outputnewline();
+	call outputnum(input);
+    call outputnewline();
+	call outputnum(myVar);
+	call outputnewline();
 }.
