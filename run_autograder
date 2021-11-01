@@ -43,6 +43,8 @@ then
     i=$((i+1))
   done
   bash segregate_data.sh 
+  bash check.sh
+  bash filterError.sh
   python3 compare.py $results $numTest
 else
   rm -f ${package}/*.class

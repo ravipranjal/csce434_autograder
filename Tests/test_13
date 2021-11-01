@@ -1,0 +1,40 @@
+main
+var input, i, base, exponent, pwr;
+
+function power(a, b);
+var div , mul, diff, ans, temp;
+{	
+	if b == 0 then
+		return 1;
+	fi;
+
+	let div <- b/2;
+	let mul <- 2*div;
+	let diff <- b-mul;
+	let ans <- 1;
+	if diff == 1 then
+		let ans <- a;
+	fi;
+	let temp <- call power(a,div);
+	let temp <- temp * temp;
+	let ans <- ans * temp;
+	return ans;
+};
+
+{
+	call outputnewline();
+    let input <- call inputnum();
+	let i <- 0;
+	while i < input do
+		let base <- call inputnum();
+		let exponent <- call inputnum();
+		let pwr <- call power(base, exponent);
+        call outputnewline();
+		call outputnum(base);
+		call outputnum(exponent);
+		call outputnewline();
+		call outputnum(pwr);
+		call outputnewline();
+        let i <- i + 1;
+	od;
+}.

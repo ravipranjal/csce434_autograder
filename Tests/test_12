@@ -1,0 +1,31 @@
+main
+var input, i, myVar, sum;
+
+function sumDigits(n);
+var units, div , sum, round;
+{	
+	let sum <- 0;
+	while n > 0 do
+		let div <- n/10;
+        let round <- div*10;
+		let units <- n - round;
+		let sum <- sum + units;
+        let n <- div;
+	od;
+	return sum;
+};
+
+{
+	call outputnewline();
+    let input <- call inputnum();
+	let i <- 0;
+	while i < input do
+		let myVar <- call inputnum();
+		let sum <- call sumDigits(myVar);
+		call outputnum(myVar);
+		call outputnewline();
+		call outputnum(sum);
+		call outputnewline();
+        let i <- i + 1;
+	od;
+}.

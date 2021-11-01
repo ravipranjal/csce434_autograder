@@ -12,17 +12,17 @@ result_file = result_dir+"results.json"
 num_tests = int(sys.argv[2])
 visibility = [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0]
 comments = ["","","","",
-            "Similar to the last project",
-            "Similar to the last project with a while loop",
-            "While loop and a few if conditions",
-            "Similar to the last project",
-            "Nested while",
-            "Nested while and if and while",
-            "Fibonacci numbers",
-            "Pyramid print",
-            "Nested ifs and checks",
-            "While and ifs",
-            "While and ifs",
+            "Find maximum number in input",
+            "Nth fibonacci number",
+            "Factorial",
+            "Create number from Input. Ex: Input: 1,2,3,4 :: Output: 1234",
+            "Sum of first N natural numbers using tail recursion",
+            "Print pyramid",
+            "Count number of 7 in a number",
+            "Sum of digits",
+            "Calcuate power a^b",
+            "Calculate cumulative sum",
+            "Print in reverse order"
             ]
 
 my_dict = { "score": 0, "output" : "", "tests": []}
@@ -83,6 +83,11 @@ for i in range(1,num_tests+1):
         test_file.close()
     else:
         comment = comments[idx]+"\nDiff:\n"+diff_text
+
+    if(points==0):
+        err_file = open("Out/err_"+str(i)+"_filt", "r")
+        comment = comment + "\n" + err_file.read()+"\n"
+
     my_temp_dict = { "score": points, "max_score": 10 , "output": comment, "name": "Test_"+str(i)}
     my_dict["tests"].append(my_temp_dict)
     my_dict["score"] += points

@@ -1,0 +1,23 @@
+main
+var cSum;
+
+function cumulativeSum();
+var input, sum;
+{	
+	let input <- call inputnum();
+    call outputnum(input);
+    call outputnewline();
+	if input == 0 then
+		return 0;
+	else
+        let sum <- call cumulativeSum();
+		return input + sum;
+	fi;
+};
+
+{
+	call outputnewline();
+	let cSum <- call cumulativeSum();
+	call outputnum(cSum);
+	call outputnewline();
+}.

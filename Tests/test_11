@@ -1,0 +1,33 @@
+main
+var input, i, myVar, count;
+
+function countSeven(n);
+var units, div ,cnt, round;
+{	
+	let cnt <- 0;
+	while n > 0 do
+		let div <- n/10;
+        let round <- div*10;
+		let units <- n - round;
+		if units == 7 then
+			let cnt <- cnt + 1;
+		fi;
+        let n <- div;
+	od;
+	return cnt;
+};
+
+{
+	call outputnewline();
+    let input <- call inputnum();
+	let i <- 0;
+	while i < input do
+		let myVar <- call inputnum();
+		call outputnum(myVar);
+		call outputnewline();
+		let count <- call countSeven(myVar);
+		call outputnum(count);
+		call outputnewline();
+        let i <- i + 1;
+	od;
+}.
