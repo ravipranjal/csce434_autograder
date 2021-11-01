@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function getSumToN(n);
+function getSumToN(n)
 {
 	if n == 1 then
 		return 1;

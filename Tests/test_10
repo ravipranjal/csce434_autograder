@@ -1,6 +1,6 @@
 main
 var input, myVar;
-procedure printNum(n);
+procedure printNum(n)
 var i;
 {	
 	if n > 0 then

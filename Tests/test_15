@@ -1,6 +1,6 @@
 main
 
-procedure printReverse();
+procedure printReverse()
 var input;
 {	
 	let input <- call inputnum();

@@ -1,7 +1,7 @@
 main
 var input;
 
-function factIter(n);
+function factIter(n)
 var i, f;
 {
     let i <- 1;
@@ -13,7 +13,7 @@ var i, f;
     return f;
 };
 
-function factRec(n);
+function factRec(n)
 {
     if n <= 1 then
         return 1;

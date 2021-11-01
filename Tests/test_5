@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function maxNumberFromInput(n);
+function maxNumberFromInput(n)
 var max, i, curr;
 {	
 	let max <- 0;

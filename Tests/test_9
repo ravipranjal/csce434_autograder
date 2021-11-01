@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function tailRecurSum(n,i);
+function tailRecurSum(n,i)
 {	
 	if n == 0 then
 		return i;

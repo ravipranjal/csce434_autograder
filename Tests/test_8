@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function getNumberFromInput(n);
+function getNumberFromInput(n)
 var num, next;
 {	
     

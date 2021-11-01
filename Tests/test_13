@@ -1,7 +1,7 @@
 main
 var input, i, base, exponent, pwr;
 
-function power(a, b);
+function power(a, b)
 var div , mul, diff, ans, temp;
 {	
 	if b == 0 then

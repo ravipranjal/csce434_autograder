@@ -1,5 +1,5 @@
 main
-procedure checkForSanity();
+procedure checkForSanity()
 {
     call outputnum(5);
 };

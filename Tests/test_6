@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function fibonacci(n);
+function fibonacci(n)
 {
 	if n == 1 then
 		return 1;

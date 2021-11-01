@@ -1,7 +1,7 @@
 main
 var input, myVar;
 
-function getTwoSum(n);
+function getTwoSum(n)
 var i,k;
 {
     let i <- call inputnum();

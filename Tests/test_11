@@ -1,7 +1,7 @@
 main
 var input, i, myVar, count;
 
-function countSeven(n);
+function countSeven(n)
 var units, div ,cnt, round;
 {	
 	let cnt <- 0;

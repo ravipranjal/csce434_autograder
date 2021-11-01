@@ -1,6 +1,6 @@
 main
 var input, myVar;
-function getSumToN(n);
+function getSumToN(n)
 var i,j;
 {
     let i <- 0;
