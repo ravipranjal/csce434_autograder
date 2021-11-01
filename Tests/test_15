@@ -1,16 +1,14 @@
 main
 
-function printReverse();
+procedure printReverse();
 var input;
 {	
 	let input <- call inputnum();
-	if input == 0 then
-		return 0;
-	fi;
-	call printReverse();
-	call outputnum(input);
-	call outputnewline();
-	return 0;
+	if input > 0 then
+    	call printReverse();
+	    call outputnum(input);
+    	call outputnewline();
+    fi;
 };
 
 {

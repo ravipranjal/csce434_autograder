@@ -59,7 +59,7 @@ for i in range(1,num_tests+1):
         points=0
     
     change = abs(wc_sample_reg_file-wc_reg_file)/wc_sample_reg_file
-    if change > .35:
+    if change > .5:
         points=0
         diff_text += "\n instruction count misaligned"
         diff_text += " expected: "+ str(wc_sample_reg_file) + " got: " + str(wc_reg_file)

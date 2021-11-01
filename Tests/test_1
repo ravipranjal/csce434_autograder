@@ -1,8 +1,7 @@
 main
-function checkForSanity();
+procedure checkForSanity();
 {
     call outputnum(5);
-    return 5;
 };
 
 

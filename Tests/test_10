@@ -1,20 +1,17 @@
 main
 var input, myVar;
-function printNum(n);
+procedure printNum(n);
 var i;
 {	
-	if n == 0 then
-		return 0;
+	if n > 0 then
+    	let i <- 0;
+	    while i < n do
+		    call outputnum(1);
+    		let i <- i + 1;
+	    od;
+    	call outputnewline();
+	    call printNum(n-1);	
 	fi;
-	
-	let i <- 0;
-	while i < n do
-		call outputnum(1);
-		let i <- i + 1;
-	od;
-	call outputnewline();
-	call printNum(n-1);	
-	return 0;
 };
 
 {
