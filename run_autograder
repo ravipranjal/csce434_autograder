@@ -22,6 +22,7 @@ then
 fi
 
 cd ${src_files}
+mkdir -p ${package}
 chmod -R 775 ${subm_files}/*
 rm -f ${subm_files}/DLX.java
 cp -rf ${subm_files}/* ${package}/

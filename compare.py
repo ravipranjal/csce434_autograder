@@ -86,7 +86,7 @@ for i in range(1,num_tests+1):
 
     if(points==0):
         err_file = open("Out/err_"+str(i)+"_filt", "r")
-        comment = comment + "\n" + err_file.read()+"\n"
+        comment = comment + "\nErrors:\n" + err_file.read()+"\n"
 
     my_temp_dict = { "score": points, "max_score": 10 , "output": comment, "name": "Test_"+str(i)}
     my_dict["tests"].append(my_temp_dict)
