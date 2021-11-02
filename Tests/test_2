@@ -11,7 +11,7 @@ var i,k;
 
 {
     let input <- call inputnum();
-    let myVar <- call gettwosum(input);
+    let myvar <- call gettwosum(input);
     call outputnum(myvar);
     call outputnewline();
 }.
