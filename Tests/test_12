@@ -1,7 +1,7 @@
 main
-var input, i, myVar, sum;
+var input, i, myvar, sum;
 
-function sumDigits(n)
+function sumdigits(n)
 var units, div , sum, round;
 {	
 	let sum <- 0;
@@ -17,15 +17,15 @@ var units, div , sum, round;
 
 {
 	call outputnewline();
-    let input <- call inputnum();
+	let input <- call inputnum();
 	let i <- 0;
 	while i < input do
-		let myVar <- call inputnum();
-		let sum <- call sumDigits(myVar);
-		call outputnum(myVar);
+		let myvar <- call inputnum();
+		let sum <- call sumdigits(myvar);
+		call outputnum(myvar);
 		call outputnewline();
 		call outputnum(sum);
 		call outputnewline();
-        let i <- i + 1;
+		let i <- i + 1;
 	od;
 }.

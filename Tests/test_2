@@ -1,7 +1,7 @@
 main
-var input, myVar;
+var input, myvar;
 
-function getTwoSum(n)
+function gettwosum(n)
 var i,k;
 {
     let i <- call inputnum();
@@ -11,7 +11,7 @@ var i,k;
 
 {
     let input <- call inputnum();
-    let myVar <- call getTwoSum(input);
-    call outputnum(myVar);
+    let myVar <- call gettwosum(input);
+    call outputnum(myvar);
     call outputnewline();
 }.

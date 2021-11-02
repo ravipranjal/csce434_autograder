@@ -1,5 +1,5 @@
 main
-var input, myVar;
+var input, myvar;
 function fibonacci(n)
 {
 	if n == 1 then
@@ -15,10 +15,10 @@ function fibonacci(n)
 
 {
     let input <- call inputnum();
-    let myVar <- call fibonacci(input);
+    let myvar <- call fibonacci(input);
     call outputnewline();
-	call outputnum(input);
+    call outputnum(input);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

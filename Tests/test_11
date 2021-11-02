@@ -1,7 +1,7 @@
 main
-var input, i, myVar, count;
+var input, i, myvar, count;
 
-function countSeven(n)
+function countseven(n)
 var units, div ,cnt, round;
 {	
 	let cnt <- 0;
@@ -19,15 +19,15 @@ var units, div ,cnt, round;
 
 {
 	call outputnewline();
-    let input <- call inputnum();
+	let input <- call inputnum();
 	let i <- 0;
 	while i < input do
-		let myVar <- call inputnum();
-		call outputnum(myVar);
+		let myvar <- call inputnum();
+		call outputnum(myvar);
 		call outputnewline();
-		let count <- call countSeven(myVar);
+		let count <- call countseven(myvar);
 		call outputnum(count);
 		call outputnewline();
-        let i <- i + 1;
+		let i <- i + 1;	
 	od;
 }.

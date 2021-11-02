@@ -1,16 +1,16 @@
 main
 
-procedure printReverse()
+procedure printreverse()
 var input;
 {	
 	let input <- call inputnum();
 	if input > 0 then
-    	call printReverse();
-	    call outputnum(input);
-    	call outputnewline();
-    fi;
+    	   call printreverse();
+	   call outputnum(input);
+    	   call outputnewline();
+	fi;
 };
 
 {
-	call printReverse();
+	call printreverse();
 }.

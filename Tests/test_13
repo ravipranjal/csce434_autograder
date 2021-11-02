@@ -23,18 +23,18 @@ var div , mul, diff, ans, temp;
 
 {
 	call outputnewline();
-    let input <- call inputnum();
+	let input <- call inputnum();
 	let i <- 0;
 	while i < input do
 		let base <- call inputnum();
 		let exponent <- call inputnum();
 		let pwr <- call power(base, exponent);
-        call outputnewline();
+		call outputnewline();
 		call outputnum(base);
 		call outputnum(exponent);
 		call outputnewline();
 		call outputnum(pwr);
 		call outputnewline();
-        let i <- i + 1;
+		let i <- i + 1;
 	od;
 }.

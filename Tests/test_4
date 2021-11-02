@@ -1,19 +1,19 @@
 main
-var input, myVar;
-function getSumToN(n)
+var input, myvar;
+function getsumton(n)
 {
 	if n == 1 then
 		return 1;
 	fi;
-    return call getSumToN(n-1) + n;
+	return call getsumton(n-1) + n;
 };
 
 {
     let input <- call inputnum();
-    let myVar <- call getSumToN(input);
+    let myvar <- call getsumton(input);
     call outputnewline();
-	call outputnum(input);
+    call outputnum(input);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

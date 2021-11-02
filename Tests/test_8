@@ -1,6 +1,6 @@
 main
-var input, myVar;
-function getNumberFromInput(n)
+var input, myvar;
+function getnumberfrominput(n)
 var num, next;
 {	
     
@@ -12,17 +12,16 @@ var num, next;
 		return num;
 	fi;
     
-    let next <- call getNumberFromInput(n-1);
+    let next <- call getnumberfrominput(n-1);
     let next <- next*10;
-	return num + next;
+    return num + next;
 };
 
 {
     let input <- call inputnum();
-    
     call outputnewline();
-    let myVar <- call getNumberFromInput(input);
+    let myvar <- call getnumberfrominput(input);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

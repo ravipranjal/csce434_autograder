@@ -1,17 +1,17 @@
 main
-var input, myVar;
-function tailRecurSum(n,i)
+var input, myvar;
+function tailrecursum(n,i)
 {	
 	if n == 0 then
 		return i;
 	fi;
-	return call tailRecurSum(n-1, i + n);
+	return call tailrecursum(n-1, i + n);
 };
 
 {
     let input <- call inputnum();
-    let myVar <- call tailRecurSum(input, 0);
+    let myvar <- call tailrecursum(input, 0);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

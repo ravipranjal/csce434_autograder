@@ -1,11 +1,11 @@
 main
-procedure checkForSanity()
+procedure checkforsanity()
 {
     call outputnum(5);
 };
 
 
 {
-    call checkForSanity();
+    call checkforsanity();
     call outputnewline();
 }.

@@ -1,6 +1,6 @@
 main
-var input, myVar;
-function getSumToN(n)
+var input, myvar;
+function getsumton(n)
 var i,j;
 {
     let i <- 0;
@@ -14,10 +14,10 @@ var i,j;
 
 {
     let input <- call inputnum();
-    let myVar <- call getSumToN(input);
+    let myvar <- call getsumton(input);
     call outputnewline();
-	call outputnum(input);
+    call outputnum(input);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

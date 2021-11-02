@@ -1,6 +1,6 @@
 main
-var input, myVar;
-function maxNumberFromInput(n)
+var input, myvar;
+function maxnumberfrominput(n)
 var max, i, curr;
 {	
 	let max <- 0;
@@ -18,8 +18,8 @@ var max, i, curr;
 
 {
     let input <- call inputnum();
-    let myVar <- call maxNumberFromInput(input);
+    let myvar <- call maxnumberfrominput(input);
     call outputnewline();
-	call outputnum(myVar);
-	call outputnewline();
+    call outputnum(myvar);
+    call outputnewline();
 }.

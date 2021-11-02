@@ -1,6 +1,6 @@
 main
-var input, myVar;
-procedure printNum(n)
+var input, myvar;
+procedure printnum(n)
 var i;
 {	
 	if n > 0 then
@@ -10,13 +10,13 @@ var i;
     		let i <- i + 1;
 	    od;
     	call outputnewline();
-	    call printNum(n-1);	
+	    call printnum(n-1);	
 	fi;
 };
 
 {
     let input <- call inputnum();
-	call outputnewline();
-    let myVar <- call printNum(input);
+    call outputnewline();
+    let myvar <- call printnum(input);
     call outputnewline();
 }.
